@@ -46,7 +46,7 @@ axios.defaults.headers.common['token'] = 'SJK3zSvzciwY6MF3jjCIXTduwg3+vcQqhLQrX6
 axios.defaults.timeout = 60000
 
 axios.defaults.baseURL = process.env.NODE_ENV === 'production'
-  ? 'http://apitest.jkxxkj.com/backend'
-  : '/'
+  ? 'https://wxapitest.xrjinrong.com'
+  : ''
 
 export default axios

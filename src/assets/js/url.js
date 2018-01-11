@@ -3,15 +3,15 @@ const urlList = {
   //图片上传
   'upload-img': '/product/upload',
 
-  //用户
-  'user-list': '/user/list', //获取用户列表
-  'get-user-card': '/user/stats', //获取用户统计数据
-  'user-card-table': '/user/stats-log', //获取用户数据详情
-  'user-detail': '/user/detail', //用户个人信息
-  'edit-user-detail': '/user/edit-detail', //修改用户个人信息
-  'user-set-status': '/user/set-status', //拉黑/移出黑名单
-  'user-audit-cert': '/user/audit-cert', //改变用户审核状态
-  'user-cert-group-count': '/user/cert-group-count', //获取用户各个审核状态的数量
+  //用户管理
+  'user-list': '/backend/user/list', //用户列表
+
+  //红包管理
+  'bonus-list': '/backend/bonus/list', //红包列表
+  'bonus-details': '/backend/bonus/detail', //红包详情
+
+  // 资金管理
+  'bill-list': '/backend/bill/list', //资金列表
 
 
   //动态

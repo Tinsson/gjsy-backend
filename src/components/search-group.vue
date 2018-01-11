@@ -7,8 +7,8 @@
         筛选查询
       </div>
       <div class="btn-group">
-        <Button type="ghost" icon="reply" @click="reset_search">重置筛选</Button>
-        <Button type="success" icon="search" @click="search">查询结果</Button>
+        <!--<Button type="ghost" icon="reply" @click="reset_search">重置筛选</Button>
+        <Button type="success" icon="search" @click="search">查询结果</Button>-->
         <slot></slot>
       </div>
     </div>
@@ -17,10 +17,10 @@
         <div class="label">
           {{item.label}}
         </div>
-        <Input :placeholder="item.placeholder" v-model="form[item.model]" v-if="item.type=='input'"></Input>
-        <DatePicker type="date" :placeholder="item.placeholder" v-model="form[item.model]" v-if="item.type=='date'" :editable="false"></DatePicker>
-        <DatePicker type="daterange" :placeholder="item.placeholder" v-model="form[item.model]" v-if="item.type=='daterange'" :editable="false"></DatePicker>
-        <Select v-model="form[item.model]" :placeholder="item.placeholder" v-if="item.type=='select'" clearable style="width:145px;">
+        <Input :placeholder="item.placeholder" v-model="form[item.model]" v-if="item.type=='input'" @on-enter="search"></Input>
+        <DatePicker type="date" :placeholder="item.placeholder" v-model="form[item.model]" v-if="item.type=='date'" @on-change="search" :editable="false"></DatePicker>
+        <DatePicker type="daterange" :placeholder="item.placeholder" v-model="form[item.model]" v-if="item.type=='daterange'" @on-change="search" :editable="false"></DatePicker>
+        <Select v-model="form[item.model]" :placeholder="item.placeholder" v-if="item.type=='select'" @on-change="search" clearable style="width:145px;">
           <Option v-for="option in item.options" :value="option.value" :key="option.value">{{ option.label }}</Option>
         </Select>
       </div>

@@ -1,6 +1,6 @@
 <template>
   <div id="defaultPage">
-    <h1 @click="show">欢迎使用秘音后台管理系统</h1>
+    <h1 @click="show">欢迎使用微信小程序（赶紧说啊）后台管理系统</h1>
   </div>
 </template>
 <script>

@@ -3,9 +3,6 @@
     <title-bar title="收入明细" @refresh="refresh"></title-bar>
     <search-group :searchList="searchList" @search="search"></search-group>
     <table-container @on-change="pageChange" @on-page-size-change="pageSizeChange" page :pageprops="pageprops">
-      <div slot="btn">
-        收入总秘币：{{Math.abs(all_price)}}
-      </div>
       <Table :columns="columns" :data="myData" border :loading="tableLoading"></Table>
     </table-container>
   </div>
@@ -18,32 +15,20 @@ export default {
       all_price: '',
       columns: [
         {
-          title: '用户昵称',
-          key: 'nick_name',
+          title: '昵称',
+          key: 'nickname',
+          align: 'center'
+        }, {
+          title: '余额',
+          key: 'balance_money',
+          align: 'center'
+        }, {
+          title: '状态',
+          key: 'type',
           align: 'center'
         },{
-          title: '用户id',
-          key: 'uuid',
-          align: 'center'
-        }, {
-          title: '绑定手机号',
-          key: 'mobile',
-          align: 'center'
-        }, {
-          title: '收入类型',
-          key: 'remark',
-          align: 'center'
-        }, {
-          title: '增加秘币',
-          key: 'price',
-          align: 'center'
-        }, {
-          title: '增加时间',
+          title: '生成时间',
           key: 'created_at',
-          align: 'center'
-        }, {
-          title: '秘币余额',
-          key: 'balance',
           align: 'center'
         }
       ],
@@ -51,22 +36,12 @@ export default {
       tableLoading: false,
       searchList: [
         {
-          label: '用户昵称',
+          label: '检索',
           type: 'input',
-          placeholder: '用户昵称',
-          model: 'nick_name'
+          placeholder: '输入关键词',
+          model: 'keyword'
         },{
-          label: '用户id',
-          type: 'input',
-          placeholder: '用户id',
-          model: 'uuid'
-        },{
-          label: '绑定手机号',
-          type: 'input',
-          placeholder: '绑定手机号',
-          model: 'mobile'
-        },{
-          label: '消费时间',
+          label: '生成时间',
           type: 'daterange',
           placeholder: '请选择时间',
           model: 'created_time',
@@ -109,14 +84,14 @@ export default {
       this.getData();
     },
     getData() {
-      this.tableLoading = true
-      this.axios.get('bill-user-log-list',{
+      this.tableLoading = true;
+      this.axios.get('bill-list',{
         params:this.searchData
       }).then(res=>{
         if(res){
-          this.tableLoading = false
-          this.all_price = res.data.all_price
-          this.myData = res.data.log_list
+          this.tableLoading = false;
+          this.myData = res.data.list;
+          this.pageprops.total = res.data.total;
         }
       })
     },

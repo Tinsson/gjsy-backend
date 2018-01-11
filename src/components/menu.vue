@@ -2,11 +2,11 @@
 <div id="my-menu">
   <Menu theme="dark" @on-select="goRoute" accordion :active-name="cur_path" :open-names="cur_open">
     <div class="layout-logo-left">
-      <img class="logo" src="../assets/images/logo.png" alt=""> 秘音后台管理
+      <img class="logo" src="../assets/images/logo.png" alt=""> 小程序后台管理
     </div>
     <div class="user-panel">
       <div class="pull-left">
-        <p class="text">liumiao</p>
+        <p class="text">Tinsson</p>
         <p class="state"><i class="icon-state"></i>online</p>
       </div>
     </div>
@@ -26,90 +26,30 @@ export default {
   data: () => ({
     arr: [{
       id: '1',
-      name: '用户',
+      name: '用户管理',
       path: '/user',
       children: [{
         id: '2',
-        name: '用户管理',
+        name: '用户列表',
         path: '/users'
-      },{
-        id:'5',
-        name: '女主播列表',
-        path: '/anchor'
-      },{
-        id: '6',
-        name: '真人审核列表',
-        path: '/verify'
       }]
     },{
       id: '7',
-      name: '礼物管理',
-      path: '/gift',
+      name: '红包管理',
+      path: '/bonus',
       children: [{
         id: '8',
-        name: '礼物管理',
-        path: '/gifts'
+        name: '红包列表',
+        path: '/bonus'
       }]
     },{
       id: '9',
       name: '资金管理',
       path: '/money',
       children: [{
-        id: '10',
-        name: '提现申请',
-        path: '/cash-apply'
-      },{
-        id: '11',
-        name: '提现列表',
-        path: '/cash-list'
-      },{
-        id: '12',
-        name: '支付宝充值列表',
-        path: '/alipay'
-      },{
-        id: '17',
-        name: '微信充值列表',
-        path: '/wx-recharge'
-      },{
-        id: '18',
-        name: '礼物明细',
-        path: '/gift-detail'
-      },{
-        id: '19',
-        name: '消费明细',
-        path: '/consumer-detail'
-      },{
         id: '20',
-        name: '收入明细',
+        name: '资金明细',
         path: '/income-detail'
-      }]
-    },{
-      id:'13',
-      name: '配置管理',
-      path: '/config',
-      children: [
-        {
-          id: '15',
-          name: '全局配置',
-          path: '/global-config'
-        },{
-          id: '14',
-          name: '新手任务',
-          path: '/task-newcomer'
-        },{
-          id: '16',
-          name: '每日任务',
-          path: '/task-daily'
-        }
-      ]
-    },{
-      id: '3',
-      name: '内容管理',
-      path: '/content',
-      children: [{
-        id: '4',
-        name: '文章分类管理',
-        path: '/article-class'
       }]
     }]
   }),

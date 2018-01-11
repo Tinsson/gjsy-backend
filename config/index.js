@@ -13,7 +13,7 @@ module.exports = {
 
     proxyTable: {
       '/': {
-               target: 'http://apitest.jkxxkj.com/backend',
+               target: 'https://wxapi.xrjinrong.com',
                // target: 'http://localhost:8081',
                changeOrigin: true,
            }

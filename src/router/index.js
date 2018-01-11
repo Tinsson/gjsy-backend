@@ -11,17 +11,13 @@ import defaultPage from '@/page/default-page' //默认模块
 
 // 用户
 import user from '@/page/user/user' //用户管理
-import anchor from '@/page/user/anchor' //女主播列表
-import verify from '@/page/user/verify' //真人审核列表
 
-//礼物管理
-import gifts from '@/page/gift/gifts' //礼物管理
+//红包管理
+import bonus from '@/page/bonus/bonus'
 
 //资金管理
 import cashApply from '@/page/money/cash-apply' //提现申请
 import cashList from '@/page/money/cash-list'  //提现列表
-import alipay from '@/page/money/alipay' //支付宝充值列表
-import wxRecharge from '@/page/money/wx-recharge' //微信充值列表
 import giftDetail from '@/page/money/gift-detail' //礼物明细
 import consumerDetail from '@/page/money/consumer-detail' //消费明细
 import incomeDetail from '@/page/money/income-detail' //收入明细
@@ -64,22 +60,14 @@ const router = new Router({
           path: '/user/users',
           name: 'user',
           component: user
-        },{
-          path: '/user/anchor',
-          name: 'anchor',
-          component: anchor
-        },{
-          path: '/user/verify',
-          name: 'verify',
-          component: verify
         }, {
           path: '/content/article-class',
           name: 'articleClass',
           component: articleClass
         }, {
-          path: '/gift/gifts',
-          name: 'gifts',
-          component: gifts
+          path: '/bonus/bonus',
+          name: 'bonus',
+          component: bonus
         }, {
           path: '/money/cash-apply',
           name: 'cashApply',
@@ -88,14 +76,6 @@ const router = new Router({
           path: '/money/cash-list',
           name: 'cashList',
           component: cashList
-        }, {
-          path: '/money/alipay',
-          name: 'alipay',
-          component: alipay
-        }, {
-          path: '/money/wx-recharge',
-          name: 'wxRecharge',
-          component: wxRecharge
         },{
           path: '/money/gift-detail',
           name: 'giftDetail',
