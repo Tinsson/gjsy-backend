@@ -45,8 +45,19 @@ axios.defaults.headers.common['token'] = 'SJK3zSvzciwY6MF3jjCIXTduwg3+vcQqhLQrX6
 
 axios.defaults.timeout = 60000
 
-axios.defaults.baseURL = process.env.NODE_ENV === 'production'
-  ? 'https://wxapitest.xrjinrong.com'
-  : ''
+let baseUrl = '';
+switch(process.env.NODE_ENV){
+  case 'production':
+    baseUrl = 'https://wxapitest.xrjinrong.com';
+    break;
+  case 'testing':
+    baseUrl = 'https://wxapi.xrjinrong.com';
+    break;
+  case 'development':
+    baseUrl = "";
+    break;
+}
+
+axios.defaults.baseURL = baseUrl;
 
 export default axios
