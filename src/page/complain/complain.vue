@@ -1,6 +1,6 @@
 <template>
   <div id="income-detail">
-    <title-bar title="投诉列表" @refresh="refresh"></title-bar>
+    <title-bar title="投诉列表1" @refresh="refresh"></title-bar>
     <search-group :searchList="searchList" @search="search"></search-group>
     <table-container @on-change="pageChange" @on-page-size-change="pageSizeChange" page :pageprops="pageprops">
         <!--<Table :columns="columns" :data="myData" border :loading="tableLoading"></Table>-->
