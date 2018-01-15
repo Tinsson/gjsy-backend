@@ -10,9 +10,11 @@ const urlList = {
   'bonus-list': '/backend/bonus/list', //红包列表
   'bonus-details': '/backend/bonus/detail', //红包详情
 
-  // 资金管理
+  //资金管理
   'bill-list': '/backend/bill/list', //资金列表
 
+  //分销管理
+  'distribute-list': '/backend/distribute/list',
 
   //动态
   'get-circles': '/circles/list',  //获取动态列表

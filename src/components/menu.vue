@@ -34,22 +34,40 @@ export default {
         path: '/users'
       }]
     },{
-      id: '7',
+      id: '3',
       name: '红包管理',
       path: '/bonus',
       children: [{
-        id: '8',
+        id: '4',
         name: '红包列表',
         path: '/bonus'
       }]
     },{
-      id: '9',
+      id: '5',
       name: '资金管理',
       path: '/money',
       children: [{
-        id: '20',
+        id: '6',
         name: '资金明细',
         path: '/income-detail'
+      }]
+    },{
+      id: '7',
+      name: '分销管理',
+      path: '/distribute',
+      children: [{
+        id: '8',
+        name: '分销列表',
+        path: '/distribute'
+      }]
+    },{
+      id: '9',
+      name: '投诉管理',
+      path: '/complain',
+      children: [{
+        id: '10',
+        name: '投诉列表',
+        path: '/complain'
       }]
     }]
   }),

@@ -15,6 +15,12 @@ import user from '@/page/user/user' //用户管理
 //红包管理
 import bonus from '@/page/bonus/bonus'
 
+//分销管理
+import distribute from '@/page/distribute/distribute'
+
+//投诉管理
+import complain from '@/page/complain/complain'
+
 //资金管理
 import cashApply from '@/page/money/cash-apply' //提现申请
 import cashList from '@/page/money/cash-list'  //提现列表
@@ -69,6 +75,14 @@ const router = new Router({
           name: 'bonus',
           component: bonus
         }, {
+          path: '/distribute/distribute',
+          name: 'distribute',
+          component: distribute
+        },{
+          path: '/complain/complain',
+          name: 'complain',
+          component: complain
+        },{
           path: '/money/cash-apply',
           name: 'cashApply',
           component: cashApply
