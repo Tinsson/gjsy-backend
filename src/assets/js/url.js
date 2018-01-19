@@ -44,6 +44,11 @@ const urlList = {
   'task-list': '/task/list', //获取任务列表
   'task-add': '/task/add', //添加任务
   'task-edit': '/task/edit', //修改任务
+
+  //红包大厅
+  'power-all': '/backend/power/all', //后台体力配置列表
+  'power-add': '/backend/power/add', //添加体力配置
+  'power-edit': '/backend/power/edit', //编辑体力配置
 }
 
 export default urlList;
