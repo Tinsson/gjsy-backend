@@ -21,6 +21,9 @@ import distribute from '@/page/distribute/distribute'
 //投诉管理
 import complain from '@/page/complain/complain'
 
+//红包大厅
+import powerConf from '@/page/hall/power-conf'
+
 //资金管理
 import cashApply from '@/page/money/cash-apply' //提现申请
 import cashList from '@/page/money/cash-list'  //提现列表
@@ -82,6 +85,10 @@ const router = new Router({
           path: '/complain/complain',
           name: 'complain',
           component: complain
+        },{
+          path: '/hall/power-conf',
+          name: 'power-conf',
+          component: powerConf
         },{
           path: '/money/cash-apply',
           name: 'cashApply',

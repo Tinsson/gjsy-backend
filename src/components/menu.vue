@@ -69,6 +69,15 @@ export default {
         name: '投诉列表',
         path: '/complain'
       }]
+    },{
+      id: '11',
+      name: '红包大厅',
+      path: '/hall',
+      children: [{
+        id: '12',
+        name: '体力值配置',
+        path: '/power-conf'
+      }]
     }]
   }),
   computed: {
