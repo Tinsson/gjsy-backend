@@ -125,8 +125,7 @@ export default {
             this.axios.post('power-edit',{
               id:this.form.id,
               name:this.form.name,
-              num:this.form.num,
-              title:this.form.title
+              num:this.form.num
             }).then(res=>{
               if(res) {
                 this.show = false;
