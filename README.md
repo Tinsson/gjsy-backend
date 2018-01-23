@@ -1,9 +1,8 @@
-<<<<<<< HEAD
 project start
 =======
-# miyin-backend
+# gjs-backend
 
-> A Vue.js project
+> 微信小程序
 
 ## Build Setup
 
@@ -17,11 +16,12 @@ npm run dev
 # build for production with minification
 npm run build
 
+# build for testing 
+npm run test
+
 # build for production and view the bundle analyzer report
 npm run build --report
 ```
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
 
 
 # 小程序后台
@@ -92,4 +92,5 @@ methods里定义的事件函数用驼峰法 例如**initData**
 只在这个页面下使用的组件就在这个组件同级下建立一个compoennts目录存放，比如单独定制的弹出层组件。
 
 
->>>>>>> 1
+>bonus
+>> components
