@@ -14,6 +14,7 @@ import user from '@/page/user/user' //用户管理
 
 //红包管理
 import bonus from '@/page/bonus/bonus'
+import askBonus from '@/page/bonus/ask-bonus'
 
 //分销管理
 import distribute from '@/page/distribute/distribute'
@@ -27,6 +28,9 @@ import cashList from '@/page/money/cash-list'  //提现列表
 import giftDetail from '@/page/money/gift-detail' //礼物明细
 import consumerDetail from '@/page/money/consumer-detail' //消费明细
 import incomeDetail from '@/page/money/income-detail' //收入明细
+import wxRecharge from '@/page/money/wx-recharge'//微信充值列表
+import virtalCoinRecharge from '@/page/money/virtual_coin_recharge' //虚拟币充值记录
+import virtalCoinDetail from '@/page/money/virtual_coin_detail' //虚拟币明细流水列表
 
 //配置管理
 import globalConfig from '@/page/config/global-config' //全局配置
@@ -75,6 +79,10 @@ const router = new Router({
           name: 'bonus',
           component: bonus
         }, {
+          path:'/bonus/ask-bonus',
+          name:'askBonus',
+          component:askBonus
+        },{
           path: '/distribute/distribute',
           name: 'distribute',
           component: distribute
@@ -102,6 +110,18 @@ const router = new Router({
           path: '/money/income-detail',
           name: 'incomeDetail',
           component: incomeDetail
+        },{
+          path:'/money/wxRecharge',
+          name:'wxRecharge',
+          component:wxRecharge
+        },{
+          path:'/money/virtalCoinRecharge',
+          name:'virtalCionRecharge',
+          component:virtalCoinRecharge
+        },{
+          path:'/money/virtalCoinDetail',
+          name:'virtalCionDetail',
+          component:virtalCoinDetail
         },{
           path: '/config/task-newcomer',
           name: 'taskNewcomer',

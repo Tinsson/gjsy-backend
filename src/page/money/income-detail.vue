@@ -13,8 +13,12 @@ export default {
   data() {
     return {
       all_price: '',
-      columns: [
-        {
+      columns: [{
+        title:'序号',
+        type:'index',
+        width:80,
+        align:'center'
+      }, {
           title: '昵称',
           key: 'nickname',
           align: 'center'
@@ -85,6 +89,7 @@ export default {
     },
     getData() {
       this.tableLoading = true;
+      // console.log(this.searchData);
       this.axios.get('bill-list',{
         params:this.searchData
       }).then(res=>{

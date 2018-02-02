@@ -18,8 +18,13 @@
           {{item.label}}
         </div>
         <Input :placeholder="item.placeholder" v-model="form[item.model]" v-if="item.type=='input'" @on-enter="search"></Input>
+
         <DatePicker type="date" :placeholder="item.placeholder" v-model="form[item.model]" v-if="item.type=='date'" @on-change="search" :editable="false"></DatePicker>
-        <DatePicker type="daterange" :placeholder="item.placeholder" v-model="form[item.model]" v-if="item.type=='daterange'" @on-change="search" :editable="false"></DatePicker>
+
+        <DatePicker type="daterange" :placeholder="item.placeholder" v-model="form[item.model]" confirm :clearable="false" v-if="item.type=='daterange'" :editable="false" @on-ok="search" @on-clear="clear_date"></DatePicker>
+
+        <Cascader v-if="item.type=='cascader'" change-on-select :data="item.options" :placeholder="item.placeholder" v-model="form[item.model]" @on-enter="search" trigger="click" @on-change="search"></Cascader>
+
         <Select v-model="form[item.model]" :placeholder="item.placeholder" v-if="item.type=='select'" @on-change="search" clearable style="width:145px;">
           <Option v-for="option in item.options" :value="option.value" :key="option.value">{{ option.label }}</Option>
         </Select>
@@ -36,37 +41,48 @@ export default {
     form: {}
   }),
   methods: {
-    getTime(date,type){
+    getTime(date, type) {
       // type:0 起始时间
       // type:1 终止时间
-      if(!date) {
+      if (!date) {
         return '';
       }
       let time = '';
       let Y = date.getFullYear();
-      let M = date.getMonth()+1;
+      let M = date.getMonth() + 1;
       let D = date.getDate();
       time = type == 0 ? time + Y + '-' + M + '-' + D + ' ' + '00:00:00' : time + Y + '-' + M + '-' + D + ' ' + '23:59:59'
       return time;
     },
     search() {
-      for(let i=0;i<this.searchList.length;i++){
-        if(this.searchList[i].type == 'daterange') {
-          this.$set(this.form,this.searchList[i]['start_end'][0],this.getTime(this.form[this.searchList[i].model][0],0))
-          this.$set(this.form,this.searchList[i]['start_end'][1],this.getTime(this.form[this.searchList[i].model][1],1))
+      for (let i = 0; i < this.searchList.length; i++) {
+        if (this.searchList[i].type == 'daterange') {
+          this.$set(this.form, this.searchList[i]['start_end'][0], this.getTime(this.form[this.searchList[i].model][0], 0))
+          this.$set(this.form, this.searchList[i]['start_end'][1], this.getTime(this.form[this.searchList[i].model][1], 1))
         }
       }
-      this.$emit('search',this.form)
+      this.$emit('search', this.form)
+    },
+    clear_date() {
+      for (let i = 0; i < this.searchList.length; i++) {
+        if (this.searchList[i].type == 'daterange') {
+          this.$set(this.form, this.searchList[i]['start_end'][0], '')
+          this.$set(this.form, this.searchList[i]['start_end'][1], '')
+        }
+      }
     },
     reset_search() {
-      for(let key in this.form) {
+      for (let key in this.form) {
         this.form[key] = ''
       }
     },
   },
   mounted() {
     for (let i = 0; i < this.searchList.length; i++) {
-      this.$set(this.form, this.searchList[i].model, '')
+      if (this.searchList[i].type === 'cascader') {
+        this.$set(this.form, this.searchList[i].model, [])
+      } else
+        this.$set(this.form, this.searchList[i].model, '')
     }
   },
 }

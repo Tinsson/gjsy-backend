@@ -1,15 +1,17 @@
 <template>
-  <div id="cash-apply">
-    <title-bar title="提现列表" @refresh="refresh"></title-bar>
+  <div id="virtual_coin_recharge">
+    <title-bar title="虚拟币充值列表" @refresh="refresh"></title-bar>
     <search-group :searchList="searchList" @search="search"></search-group>
     <table-container @on-change="pageChange" @on-page-size-change="pageSizeChange" page :pageprops="pageprops">
+      <div slot="btn">
+      </div>
       <Table :columns="columns" :data="myData" border :loading="tableLoading"></Table>
     </table-container>
   </div>
 </template>
 <script>
 export default {
-  name: "cash-apply",
+  name: "virtalCoinRecharge",
   data() {
     return {
       columns: [{
@@ -17,45 +19,45 @@ export default {
         type:'index',
         width:80,
         align:'center'
-      }, {
-          title: 'id',
-          key: 'uid',
-          align: 'center'
-        },{
-          title: '昵称',
+      },{
+          title: '用户昵称',
           key: 'nickname',
           align: 'center'
-        }, {
-          title: '提现订单号',
-          key: 'order_sn',
+        },{
+          title: '用户id',
+          key: 'uid',
           align: 'center'
         }, {
-          title: '提现金额（rmb）',
+          title: '充值金额',
           key: 'money',
           align: 'center'
-        },{
-          title: '申请时间',
+        }, {
+          title: '充值金币',
+          key: 'coin',
+          align: 'center'
+        }, {
+          title: '充值时间',
           key: 'created_at',
           align: 'center'
-        },{
-          title: '提现通过时间',
-          key: 'finish_at',
+        }, {
+          title:'金币余额',
+          key:'balance',
           align:'center'
         }
       ],
-      myData: [],
+      myData: [{uuid:1}],
       tableLoading: false,
       searchList: [
         {
-          label: '昵称',
+          label: '检索',
           type: 'input',
-          placeholder: '用户昵称',
-          model: 'keyword'
+          placeholder: 'openid',
+          model: 'openid'
         },{
-          label: '申请时间',
+          label: '充值时间',
           type: 'daterange',
           placeholder: '请选择时间',
-          model: 'apply_time',
+          model: 'register_time',
           start_end: ['start_time','end_time']
         }
       ],
@@ -67,16 +69,15 @@ export default {
         page: 1,
         size: 10
       },
-      searchForm: {}, //搜索框属性
-      cardsearch: {
-        status: 1,
-        difference:1
+      searchForm: {} ,//搜索框属性
+      my_search:{
+        difference:0
       }
     }
   },
   computed: {
     searchData () {
-      return Object.assign(this.fy,this.searchForm,this.cardsearch);
+      return Object.assign(this.fy,this.searchForm,this.my_search);
     }
   },
   watch:{
@@ -103,7 +104,7 @@ export default {
     getData() {
       // console.log(this.searchData);
       this.tableLoading = true;
-      this.axios.get('backend-order-recharge', {
+      this.axios.get('recharge-list', {
         params: this.searchData
       }).then(res => {
         // console.log(res);
@@ -115,7 +116,7 @@ export default {
       })
     },
   },
-  mounted() {
+  mounted(){
     this.getData();
   }
 }

@@ -9,6 +9,8 @@ const urlList = {
   //红包管理
   'bonus-list': '/backend/bonus/list', //红包列表
   'bonus-details': '/backend/bonus/detail', //红包详情
+  'askbonus': '/backend/abonus/search', //讨红包管理
+  'asksearch':'/backend/abonus/search-detail', //讨红包明细
 
   //资金管理
   'bill-list': '/backend/bill/list', //资金列表
@@ -16,8 +18,11 @@ const urlList = {
   //分销管理
   'distribute-list': '/backend/distribute/list',
 
+  //分销收益明细列表
+  'distribute-detail': '/backend/distribute/detail',
+
   //动态
-  'get-circles': '/circles/list',  //获取动态列表
+  'get-circles': '/circles/list', //获取动态列表
 
   // 礼物管理
 
@@ -35,6 +40,9 @@ const urlList = {
   'product-drop': '/product/drop', //获取礼物名称下拉列表
   'product-search': '/product/search', //获取礼物明细
   'bill-user-log-list': '/bill/user-log-list', //消费/收入明细
+  'backend-order-recharge': '/backend/order/recharge', //充值/提现
+  'recharge-list':'/backend/game/recharge-list',//虚拟币充值
+  'coin-search':'/backend/game/search',//虚拟币明细
 
   //配置管理
 

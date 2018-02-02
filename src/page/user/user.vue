@@ -89,7 +89,7 @@ export default {
                 },
                 on: {
                   click: () => {
-                    this.$refs.userDetail.show(params.row.uuid)
+                    this.$refs.userDetail.show(params.row.uuid) 
                   }
                 }
               }, '查看')

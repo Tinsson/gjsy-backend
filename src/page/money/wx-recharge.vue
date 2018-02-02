@@ -14,34 +14,30 @@ export default {
   name: "wx-recharge",
   data() {
     return {
-      columns: [
-        {
+      columns: [{
+        title:'序号',
+        type:'index',
+        width:80,
+        align:'center'
+      },{
           title: '用户昵称',
-          key: 'uuid',
+          key: 'nickname',
           align: 'center'
         },{
           title: '用户id',
-          key: 'account',
-          align: 'center'
-        }, {
-          title: '绑定手机号',
-          key: 'user_name',
+          key: 'uid',
           align: 'center'
         }, {
           title: '交易流水号',
-          key: 'register_time',
+          key: 'trade_no',
           align: 'center'
         }, {
           title: '充值金额',
-          key: 'mobile',
-          align: 'center'
-        }, {
-          title: '用户唯一支付宝号',
-          key: 'wx',
+          key: 'money',
           align: 'center'
         }, {
           title: '时间',
-          key: 'pic',
+          key: 'created_at',
           align: 'center'
         }
       ],
@@ -52,27 +48,7 @@ export default {
           label: '用户昵称',
           type: 'input',
           placeholder: '用户昵称',
-          model: 'uuid'
-        },{
-          label: '支付宝账号',
-          type: 'input',
-          placeholder: '支付宝账号',
-          model: 'nickname'
-        },{
-          label: '联系手机号',
-          type: 'input',
-          placeholder: '联系手机号',
-          model: 'nickname'
-        },{
-          label: '姓名',
-          type: 'input',
-          placeholder: '姓名',
-          model: 'nickname'
-        },{
-          label: '绑定手机号',
-          type: 'input',
-          placeholder: '绑定手机号',
-          model: 'nickname'
+          model: 'keyword'
         },{
           label: '通过时间',
           type: 'daterange',
@@ -89,17 +65,25 @@ export default {
         page: 1,
         size: 10
       },
-      searchForm: {} //搜索框属性
+      searchForm: {} ,//搜索框属性
+      my_search:{
+        difference:0
+      }
     }
   },
   computed: {
     searchData () {
-      return Object.assign(this.fy,this.searchForm);
+      return Object.assign(this.fy,this.searchForm,this.my_search);
+    }
+  },
+  watch:{
+    searchData:function () {
+      this.getData();
     }
   },
   methods: {
     refresh() {
-      console.log('刷新')
+      this.getData();
     },
     search(data) {
       this.searchForm = data;
@@ -114,8 +98,22 @@ export default {
       this.getData();
     },
     getData() {
-      console.log(this.searchData)
+      // console.log(this.searchData);
+      this.tableLoading = true;
+      this.axios.get('backend-order-recharge', {
+        params: this.searchData
+      }).then(res => {
+        // console.log(res);
+        if (res) {
+          this.tableLoading = false;
+          this.myData = res.data.list;
+          this.pageprops.total = res.data.total;
+        }
+      })
     },
+  },
+  mounted(){
+    this.getData();
   }
 }
 </script>

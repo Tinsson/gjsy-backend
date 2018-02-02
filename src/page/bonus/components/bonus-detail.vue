@@ -88,7 +88,6 @@ export default {
           },
           on: {
             click: () => {
-              console.log(this);
               this.a.methods.playVoice(params.row);
             }
           }

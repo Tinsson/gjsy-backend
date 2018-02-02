@@ -39,8 +39,12 @@ export default {
       path: '/bonus',
       children: [{
         id: '4',
-        name: '红包列表',
+        name: '语音红包',
         path: '/bonus'
+      },{
+        id:'11',
+        name:'讨红包管理',
+        path:'/ask-bonus'
       }]
     },{
       id: '5',
@@ -50,6 +54,22 @@ export default {
         id: '6',
         name: '资金明细',
         path: '/income-detail'
+      },{
+        id:'12',
+        name:'提现列表',
+        path:'/cash-list'
+      },{
+        id:'13',
+        name:'微信充值记录',
+        path:'/wxRecharge'
+      },{
+        id:'14',
+        name:'虚拟币充值记录',
+        path:'/virtalCoinRecharge'
+      },{
+        id:'15',
+        name:'虚拟币明细流水',
+        path:'/virtalCoinDetail'
       }]
     },{
       id: '7',
