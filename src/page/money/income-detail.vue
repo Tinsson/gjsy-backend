@@ -22,6 +22,14 @@ export default {
           title: '余额',
           key: 'balance_money',
           align: 'center'
+        },{
+          title: '操作金额',
+          key: 'affect_money',
+          align: 'center'
+        },{
+          title: '资金来源',
+          key: 'money_source',
+          align: 'center'
         }, {
           title: '状态',
           key: 'type',
