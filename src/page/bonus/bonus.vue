@@ -56,6 +56,10 @@
             key: 'bonus_password',
             align: 'center'
           }, {
+            title: '红包状态',
+            key: 'is_pay',
+            align: 'center'
+          },{
             title: '红包金额',
             key: 'bonus_money',
             align: 'center'
