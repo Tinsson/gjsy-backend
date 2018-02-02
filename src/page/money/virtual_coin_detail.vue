@@ -1,102 +1,112 @@
 <template>
-<div id="income-detail">
-  <title-bar title="分销列表" @refresh="refresh"></title-bar>
+<div id="virtual_coin_detail">
+  <title-bar title="虚拟币明细流水" @refresh="refresh"></title-bar>
   <search-group :searchList="searchList" @search="search"></search-group>
   <table-container @on-change="pageChange" @on-page-size-change="pageSizeChange" page :pageprops="pageprops">
-    <div slot="btn">
-      总金额：0元
-    </div>
     <Table :columns="columns" :data="myData" border :loading="tableLoading"></Table>
   </table-container>
-
-  <distribute-detail ref="distributeDetail" :my_search_id="my_search"></distribute-detail>
 </div>
 </template>
 <script>
-import distributeDetail from './components/distribute-detail'
 export default {
-  name: "income-detail",
-  components: {
-    distributeDetail
-  },
+  name: "virtalCoinDetail",
   data() {
     return {
-      all_price: '',
       columns: [{
         title: '序号',
-        key: 'id',
+        type: 'index',
+        width: 60,
         align: 'center'
       }, {
-        title: '发包人',
-        key: 'name',
+        title: '用户昵称',
+        key: 'nickname',
         align: 'center'
       }, {
-        title: '微信ID',
+        title: 'openid',
         key: 'uid',
         align: 'center'
       }, {
-        title: '发红包金额',
-        key: 'bonus_money',
+        title: '类型',
+        key: 'symbol',
         align: 'center'
       }, {
-        title: '被领取金额',
-        key: 'payable_money',
+        title: '行为',
+        key: 'type',
         align: 'center'
       }, {
-        title: '提成金额',
-        key: 'commission',
-        align: 'center'
+        title: '金币变化',
+        align: 'center',
+        render:(h,params)=>{
+          if (params.row.symbol === '支出') {
+            return h('span','-'+params.row.coin)
+          }else {
+            return h('span','+'+params.row.coin)
+          }
+        }
       }, {
-        title: '提成时间',
+        title: '时间',
         key: 'created_at',
         align: 'center'
       }, {
-        title: '收益者',
-        key: 'to_name',
+        title: '金币余额',
+        key: 'balance',
         align: 'center'
-      }, {
-        title: '微信ID',
-        key: 'to_uid',
-        align: 'center'
-      }, {
-        title: '操作',
-        key: 'operation',
-        align: 'center',
-        render: (h, params) => {
-          return h('div', [
-            h('Button', {
-              props: {
-                type: 'info'
-              },
-              on: {
-                click: () => {
-                  this.my_search.openid = params.row.uid;
-                  // this.my_search.openid = 'ok4Em0WTwfwbbtq6KKi7GgcbgBSA'
-                  this.$refs.distributeDetail.show(this.searchData);
-                }
-              }
-            }, '查看明细')
-          ])
-        }
       }],
       myData: [],
       tableLoading: false,
+
       searchList: [{
-        label: '发包人',
+        label: '检索',
         type: 'input',
-        placeholder: '请输入昵称',
-        model: 'name'
+        placeholder: 'openid',
+        model: 'openid'
       }, {
-        label: '收益者',
-        type: 'input',
-        placeholder: '请输入昵称',
-        model: 'to_name'
-      }, {
-        label: '提成时间',
+        label: '充值时间',
         type: 'daterange',
         placeholder: '请选择时间',
-        model: 'created_time',
+        model: 'register_time',
         start_end: ['start_time', 'end_time']
+      }, {
+        label: '类型/行为',
+        type: 'cascader',
+        placeholder: '请选择类型/行为',
+        options: [{
+          label: '支出',
+          value: 1,
+          children:[{
+            label: '参与大转盘',
+            value: 5
+          }, {
+            label: '发起猜拳',
+            value: 0
+          }, {
+            label: '发起押注',
+            value: 1
+          }, {
+            label: '发起应战',
+            value: 3
+          }]
+        }, {
+          label: '收入',
+          value: 0,
+          children:[{
+            label:'充值',
+            value:7
+          },{
+            label:'签到',
+            value: 8
+          },{
+            label:'大转盘奖励',
+            value:6
+          },{
+            label:'押注奖励',
+            value:2
+          },{
+            label:'猜拳奖励',
+            value:10
+          }]
+        }],
+        model: 'type'
       }],
       pageprops: { //分页配置
         showSizer: true,
@@ -107,15 +117,13 @@ export default {
         size: 10
       },
       searchForm: {}, //搜索框属性
-      my_search: {
-        openid:''
-      },
+      my_search:{}
     }
   },
   computed: {
     searchData() {
       return Object.assign(this.fy, this.searchForm, this.my_search);
-    }
+    },
   },
   watch:{
     searchData:function () {
@@ -128,20 +136,21 @@ export default {
     },
     search(data) {
       this.searchForm = data;
+      this.getData();
     },
     pageChange(page) {
       this.fy.page = page;
+      this.getData();
     },
     pageSizeChange(size) {
       this.fy.size = size;
+      this.getData();
     },
     getData() {
       this.tableLoading = true;
-      // console.log(this.searchData);
-      this.axios.get('distribute-list', {
+      this.axios.get('coin-search', {
         params: this.searchData
       }).then(res => {
-        // console.log(res);
         if (res) {
           this.tableLoading = false;
           this.myData = res.data.list;

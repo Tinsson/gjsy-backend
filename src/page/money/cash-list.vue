@@ -12,34 +12,22 @@ export default {
   name: "cash-apply",
   data() {
     return {
-      columns: [
-        {
+      columns: [{
+        title:'序号',
+        type:'index',
+        width:80,
+        align:'center'
+      }, {
           title: 'id',
-          key: 'id',
+          key: 'uid',
           align: 'center'
         },{
           title: '昵称',
-          key: 'nick_name',
-          align: 'center'
-        }, {
-          title: '姓名',
-          key: 'name',
-          align: 'center'
-        }, {
-          title: '绑定手机号',
-          key: 'user_mobile',
-          align: 'center'
-        }, {
-          title: '联系手机号',
-          key: 'mobile',
-          align: 'center'
-        }, {
-          title: '支付宝账号',
-          key: 'alipay',
+          key: 'nickname',
           align: 'center'
         }, {
           title: '提现订单号',
-          key: 'uuid',
+          key: 'order_sn',
           align: 'center'
         }, {
           title: '提现金额（rmb）',
@@ -51,7 +39,7 @@ export default {
           align: 'center'
         },{
           title: '提现通过时间',
-          key: 'updated_at',
+          key: 'finish_at',
           align:'center'
         }
       ],
@@ -62,27 +50,7 @@ export default {
           label: '昵称',
           type: 'input',
           placeholder: '用户昵称',
-          model: 'nick_name'
-        },{
-          label: '支付宝账号',
-          type: 'input',
-          placeholder: '支付宝账号',
-          model: 'alipay'
-        },{
-          label: '联系手机号',
-          type: 'input',
-          placeholder: '联系手机号',
-          model: 'mobile'
-        },{
-          label: '姓名',
-          type: 'input',
-          placeholder: '姓名',
-          model: 'name'
-        },{
-          label: '绑定手机号',
-          type: 'input',
-          placeholder: '绑定手机号',
-          model: 'user_mobile'
+          model: 'keyword'
         },{
           label: '申请时间',
           type: 'daterange',
@@ -101,13 +69,19 @@ export default {
       },
       searchForm: {}, //搜索框属性
       cardsearch: {
-        status: 1
+        status: 1,
+        difference:1
       }
     }
   },
   computed: {
     searchData () {
       return Object.assign(this.fy,this.searchForm,this.cardsearch);
+    }
+  },
+  watch:{
+    searchData:function () {
+      this.getData();
     }
   },
   methods: {
@@ -127,13 +101,16 @@ export default {
       this.getData();
     },
     getData() {
+      // console.log(this.searchData);
       this.tableLoading = true;
-      this.axios.get('wallet-withdrawing',{
+      this.axios.get('backend-order-recharge', {
         params: this.searchData
-      }).then(res=>{
-        this.tableLoading = false;
-        if(res){
-          this.myData = res.data.list
+      }).then(res => {
+        // console.log(res);
+        if (res) {
+          this.tableLoading = false;
+          this.myData = res.data.list;
+          this.pageprops.total = res.data.total;
         }
       })
     },

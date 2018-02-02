@@ -1,62 +1,63 @@
 <template>
-  <div id="income-detail">
-    <title-bar title="收入明细" @refresh="refresh"></title-bar>
+  <div id="virtual_coin_recharge">
+    <title-bar title="虚拟币充值列表" @refresh="refresh"></title-bar>
     <search-group :searchList="searchList" @search="search"></search-group>
     <table-container @on-change="pageChange" @on-page-size-change="pageSizeChange" page :pageprops="pageprops">
+      <div slot="btn">
+      </div>
       <Table :columns="columns" :data="myData" border :loading="tableLoading"></Table>
     </table-container>
   </div>
 </template>
 <script>
 export default {
-  name: "income-detail",
+  name: "virtalCoinRecharge",
   data() {
     return {
-      all_price: '',
       columns: [{
         title:'序号',
         type:'index',
         width:80,
         align:'center'
-      }, {
-          title: '昵称',
+      },{
+          title: '用户昵称',
           key: 'nickname',
           align: 'center'
-        }, {
-          title: '余额',
-          key: 'balance_money',
-          align: 'center'
         },{
-          title: '操作金额',
-          key: 'affect_money',
-          align: 'center'
-        },{
-          title: '资金来源',
-          key: 'money_source',
+          title: '用户id',
+          key: 'uid',
           align: 'center'
         }, {
-          title: '状态',
-          key: 'type',
+          title: '充值金额',
+          key: 'money',
           align: 'center'
-        },{
-          title: '生成时间',
+        }, {
+          title: '充值金币',
+          key: 'coin',
+          align: 'center'
+        }, {
+          title: '充值时间',
           key: 'created_at',
           align: 'center'
+        }, {
+          title:'金币余额',
+          key:'balance',
+          align:'center'
         }
       ],
-      myData: [],
+      myData: [{uuid:1}],
       tableLoading: false,
       searchList: [
         {
           label: '检索',
           type: 'input',
-          placeholder: '输入关键词',
-          model: 'keyword'
+          placeholder: 'openid',
+          model: 'openid'
         },{
-          label: '生成时间',
+          label: '充值时间',
           type: 'daterange',
           placeholder: '请选择时间',
-          model: 'created_time',
+          model: 'register_time',
           start_end: ['start_time','end_time']
         }
       ],
@@ -68,15 +69,20 @@ export default {
         page: 1,
         size: 10
       },
-      searchForm: {}, //搜索框属性
-      my_search: {
-        pay_type: 2
+      searchForm: {} ,//搜索框属性
+      my_search:{
+        difference:0
       }
     }
   },
   computed: {
     searchData () {
       return Object.assign(this.fy,this.searchForm,this.my_search);
+    }
+  },
+  watch:{
+    searchData:function () {
+      this.getData();
     }
   },
   methods: {
@@ -96,12 +102,13 @@ export default {
       this.getData();
     },
     getData() {
-      this.tableLoading = true;
       // console.log(this.searchData);
-      this.axios.get('bill-list',{
-        params:this.searchData
-      }).then(res=>{
-        if(res){
+      this.tableLoading = true;
+      this.axios.get('recharge-list', {
+        params: this.searchData
+      }).then(res => {
+        // console.log(res);
+        if (res) {
           this.tableLoading = false;
           this.myData = res.data.list;
           this.pageprops.total = res.data.total;
@@ -109,7 +116,7 @@ export default {
       })
     },
   },
-  mounted() {
+  mounted(){
     this.getData();
   }
 }
