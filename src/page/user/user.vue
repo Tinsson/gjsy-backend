@@ -37,6 +37,10 @@ export default {
           key: 'nickname',
           align: 'center'
         },{
+          title: 'openid',
+          key: 'openid',
+          align: 'center'
+        },{
           title: '性别',
           key: 'gender',
           align: 'center',

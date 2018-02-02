@@ -15,6 +15,7 @@ const urlList = {
 
   //分销管理
   'distribute-list': '/backend/distribute/list',
+  'distribute-detail': '/backend/distribute/detail',
 
   //动态
   'get-circles': '/circles/list',  //获取动态列表

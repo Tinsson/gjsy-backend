@@ -39,6 +39,10 @@
               })
             }
           },{
+            title: 'openid',
+            key: 'uid',
+            align: 'center'
+          },{
             title: '昵称',
             key: 'nickname',
             align: 'center'
