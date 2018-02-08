@@ -41,7 +41,7 @@ vue-cli自己打包出来的文件不多做介绍，主要说一下路由配置�
 ``` javascript
 	proxyTable: {
       '/': {
-               target: 'https://wxapitest.pgyxwd.com',
+               target: 'https://wxapitest.xrjinrong.com',
                changeOrigin: true,
            }
     },
