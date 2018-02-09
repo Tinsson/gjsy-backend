@@ -3,7 +3,7 @@
     <title-bar title="讨红包管理" @refresh="refresh"></title-bar>
     <search-group :searchList="searchList" @search="search"></search-group>
     <table-container @on-change="pageChange" @on-page-size-change="pageSizeChange" page :pageprops="pageprops">
-      <Table :columns="columns" border :data="myData"></Table>
+      <Table :columns="columns" border :data="myData" :loading="tableLoading"></Table>
     </table-container>
     <ask-bonus-detail ref="askBonusDetail"></ask-bonus-detail>
   </div>
@@ -112,6 +112,7 @@ export default {
         model: 'created_time',
         start_end: ['start_time', 'end_time']
       }],
+      tableLoading:false,
       myData: [],
       fy: { //当前分页属性
         page: 1,

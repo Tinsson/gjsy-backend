@@ -11,6 +11,8 @@ const urlList = {
   'bonus-details': '/backend/bonus/detail', //红包详情
   'askbonus': '/backend/abonus/search', //讨红包管理
   'asksearch':'/backend/abonus/search-detail', //讨红包明细
+  'adv-search':'/backend/bonus/adv-search',//广告红包列表
+  'adv-detail':'/backend/bonus/adv-detail',//广告红包详情
 
   //资金管理
   'bill-list': '/backend/bill/list', //资金列表
@@ -43,6 +45,9 @@ const urlList = {
   'backend-order-recharge': '/backend/order/recharge', //充值/提现
   'recharge-list':'/backend/game/recharge-list',//虚拟币充值
   'coin-search':'/backend/game/search',//虚拟币明细
+  'edit-review':'/backend/withdraw/edit-review',//大额提现审核
+  'search-review':'/backend/withdraw/search-review', //大额提现列表
+
 
   //配置管理
 

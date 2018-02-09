@@ -41,6 +41,14 @@ export default {
           title: '提现通过时间',
           key: 'finish_at',
           align:'center'
+        },{
+          title:'提现状态',
+          key:'',
+          align:'center'
+        },{
+          title:'审核人',
+          key:'',
+          align:'center'
         }
       ],
       myData: [],
