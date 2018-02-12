@@ -32,10 +32,22 @@ export default {
           key: 'trade_no',
           align: 'center'
         }, {
+          title:'充值类型',
+          key:'order_detail',
+          align:'center'
+        },{
+          title:'红包金额',
+          key:'money',
+          align:'center'
+        },{
           title: '充值金额',
-          key: 'money',
+          key: 'wx_money',
           align: 'center'
         }, {
+          title:'余额抵扣',
+          key:'balance_money',
+          align:'center'
+        },{
           title: '时间',
           key: 'created_at',
           align: 'center'

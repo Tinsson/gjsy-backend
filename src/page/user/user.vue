@@ -15,7 +15,7 @@
 </template>
 <script>
 import msgBtn from './components/user-msg-btn.vue'
-import userDetail from './components/user-detail.vue'
+import userDetail from './components/user-detail-new.vue'
 export default {
   name: "user",
   data (){
@@ -93,7 +93,7 @@ export default {
                 },
                 on: {
                   click: () => {
-                    this.$refs.userDetail.show(params.row.uuid) 
+                    this.$refs.userDetail.show(params.row.uuid)
                   }
                 }
               }, '查看')

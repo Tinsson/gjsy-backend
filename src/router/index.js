@@ -13,8 +13,9 @@ import defaultPage from '@/page/default-page' //默认模块
 import user from '@/page/user/user' //用户管理
 
 //红包管理
-import bonus from '@/page/bonus/bonus'
-import askBonus from '@/page/bonus/ask-bonus'
+import bonus from '@/page/bonus/bonus'//红包管理
+import askBonus from '@/page/bonus/ask-bonus'//讨红包管理
+import adBonus from '@/page/bonus/ad-bonus' //广告红包管理
 
 //分销管理
 import distribute from '@/page/distribute/distribute'
@@ -34,15 +35,23 @@ import incomeDetail from '@/page/money/income-detail' //收入明细
 import wxRecharge from '@/page/money/wx-recharge'//微信充值列表
 import virtalCoinRecharge from '@/page/money/virtual_coin_recharge' //虚拟币充值记录
 import virtalCoinDetail from '@/page/money/virtual_coin_detail' //虚拟币明细流水列表
+import greatCash from '@/page/money/greatNumber' //大额提现申请
 
 //配置管理
 import globalConfig from '@/page/config/global-config' //全局配置
 import taskNewcomer from '@/page/config/task-newcomer' //新手任务配置
 import taskDaily from '@/page/config/task-daily' //每日任务配置
+import picCofin from '@/page/config/pic-config' //图片配置
+import coinConfig from '@/page/config/coin-config' //金币配置
+import dialConfig from '@/page/config/dial-config' //大转盘配置
 
 // 内容管理
 import articleClass from '@/page/content/articleClass' //文章分类管理
 
+//对账
+import moneyCheck from '@/page/account-check/money-check' //红包资金对账
+import incomeCheck from '@/page/account-check/income-check' //收支对账
+import anomalyBonus from '@/page/account-check/anomaly-bonus' //异常红包明细
 
 const router = new Router({
   // mode: 'history',
@@ -85,6 +94,10 @@ const router = new Router({
           path:'/bonus/ask-bonus',
           name:'askBonus',
           component:askBonus
+        },{
+          path:'/bonus/ad-bonus',
+          name:'adBonus',
+          component:adBonus
         },{
           path: '/distribute/distribute',
           name: 'distribute',
@@ -130,6 +143,10 @@ const router = new Router({
           name:'virtalCionDetail',
           component:virtalCoinDetail
         },{
+          path:'/money/greatCash',
+          name:'greatCash',
+          component:greatCash
+        },{
           path: '/config/task-newcomer',
           name: 'taskNewcomer',
           component: taskNewcomer
@@ -141,8 +158,32 @@ const router = new Router({
           path: '/config/global-config',
           name: 'globalConfig',
           component: globalConfig
-        }
+        },{
+          path:'/config/pic-config',
+          name:'picCofin',
+          component:picCofin
+        },{
+          path:'/config/coin-config',
+          name:'coinConfig',
+          component:coinConfig
+        },{
+          path:'/config/dial-config',
+          name:'dialConfig',
+          component:dialConfig
+        },{
+          path:'/check/money-check',
+          name:'moneyCheck',
+          component:moneyCheck
+        },{
+          path:'/check/income-check',
+          name:'incomeCheck',
+          component:incomeCheck
+        },
       ]
+    },{
+      path:'/check/anomaly-bonus',
+      name:'anomalyBonus',
+      component:anomalyBonus
     }
   ]
 })
