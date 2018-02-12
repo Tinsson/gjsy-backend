@@ -3,10 +3,12 @@
     <Modal v-model="if_show" cancel-text title="广告红包详细">
       <Table :columns="columns" :data="myData"></Table>
     </Modal>
+    <scalePic ref="scalePic"></scalePic>
   </div>
 </template>
 
 <script>
+import scalePic from './scalePic.vue'
 export default {
   name:'ad-detail',
   data:function () {
@@ -38,6 +40,11 @@ export default {
               style:{
                 width:'45px',
                 height:'45px'
+              },
+              on:{
+                click:()=>{
+                  this.$refs.scalePic.show(params.row.url)
+                }
               }
             })
           }else return
@@ -49,6 +56,9 @@ export default {
       originalData:{},
       id:''
     }
+  },
+  components:{
+    scalePic
   },
   methods:{
     show(row) {

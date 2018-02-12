@@ -43,11 +43,11 @@ export default {
           align:'center'
         },{
           title:'提现状态',
-          key:'',
+          key:'status',
           align:'center'
         },{
           title:'审核人',
-          key:'',
+          key:'check_name',
           align:'center'
         }
       ],

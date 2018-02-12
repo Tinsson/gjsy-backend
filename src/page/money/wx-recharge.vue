@@ -33,19 +33,19 @@ export default {
           align: 'center'
         }, {
           title:'充值类型',
-          key:'',
+          key:'order_detail',
           align:'center'
         },{
           title:'红包金额',
-          key:'',
+          key:'money',
           align:'center'
         },{
           title: '充值金额',
-          key: 'money',
+          key: 'wx_money',
           align: 'center'
         }, {
           title:'余额抵扣',
-          key:'',
+          key:'balance_money',
           align:'center'
         },{
           title: '时间',

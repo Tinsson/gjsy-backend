@@ -57,6 +57,20 @@ const urlList = {
   'task-list': '/task/list', //获取任务列表
   'task-add': '/task/add', //添加任务
   'task-edit': '/task/edit', //修改任务
+  'del-virtual':'/backend/game/del-virtual', //金币配置删除
+  'add-virtual':'/backend/game/add-virtual',//金币配置添加
+  'edit-virtual':'/backend/game/edit-virtual',//金币配置编辑
+  'virtual-list':'/backend/game/virtual-list',//金币配置列表
+  'bwheel-list':'/backend/game/bwheel-list',//大转盘列表
+  'add-bwheel':'/backend/game/add-bwheel',//添加大转盘配置
+  'edit-bwheel':'/backend/game/edit-bwheel',//编辑大转盘配置
+  'del-bwheel':'/backend/game/del-bwheel',//删除大转盘配置
+
+  'pic-list':'/backend/abonus/template',//图片管理列表
+  'pic-add':'/backend/abonus/add',//图片管理添加
+  'pic-edit':'/backend/abonus/edit',//图片管理编辑
+  'pic-del':'/backend/abonus/del',//图片管理删除
+
 }
 
 export default urlList;
