@@ -90,13 +90,15 @@ export default {
       }]
     },{
       id:'17',
-      name:'红包对账',
+      name:'对账',
       path:'/check',
-      children:[{
-        id:'18',
-        name:'红包对账',
-        path:'/money-check'
-      },{
+      children:[
+      //   {
+      //   id:'18',
+      //   name:'红包对账',
+      //   path:'/money-check'
+      // },
+      {
         id:'19',
         name:'收支对账',
         path:'/income-check'
