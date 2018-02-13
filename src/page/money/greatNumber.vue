@@ -165,7 +165,7 @@ export default {
         this.axios.get('edit-review',{
           params:{
             id:type[0],
-            status:0
+            status:2
           }
         }).then(
           this.getData()

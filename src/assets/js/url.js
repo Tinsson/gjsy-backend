@@ -6,6 +6,7 @@ const urlList = {
   //用户管理
   'user-list': '/backend/user/list', //用户列表
   'user-panel':'/backend/user/panel',//用户面板
+  'forbid':'/backend/user/forbid',//冻结接口
 
   //红包管理
   'bonus-list': '/backend/bonus/list', //红包列表
@@ -23,6 +24,9 @@ const urlList = {
 
   //分销收益明细列表
   'distribute-detail': '/backend/distribute/detail',
+
+  //对账
+  'income-check':'/backend/bill/stats',//收支对账
 
   //动态
   'get-circles': '/circles/list', //获取动态列表

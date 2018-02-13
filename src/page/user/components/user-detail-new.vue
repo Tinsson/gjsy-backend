@@ -38,8 +38,8 @@
               <p v-if="myData.is_distribute">分销时间 <br> <span class="goRight">{{myData.distribute_time}}</span> </p>
               <p>是否封号 <span class="goRight">{{myData.status?'否':'是'}}</span> </p>
               <div class="btn">
-                <Button v-if="freeze">解冻</Button>
-                <Button v-else>冻结</Button>
+                <Button type="success" v-if="!freeze" @click='forbidUser(1)'>解封</Button>
+                <Button type="error" v-else @click='forbidUser(0)'>封号</Button>
               </div>
             </div>
           </Card>
@@ -234,7 +234,8 @@ export default {
     end_time: '',
     freeze: false,
     list: [],
-    btnType: ['warning', 'info', 'info', 'info', 'info', 'info']
+    btnType: ['warning', 'info', 'info', 'info', 'info', 'info'],
+    freeze:false,
   }),
 
   computed: {
@@ -267,6 +268,23 @@ export default {
       time = type == 0 ? time + Y + '-' + M + '-' + D + ' ' + '00:00:00' : time + Y + '-' + M + '-' + D + ' ' + '23:59:59'
       return time;
     },
+
+    forbidUser(a){
+      this.axios.post('forbid',{
+        openid:this.my_search.key,
+        status:a
+      }).then((res)=>{
+        if (res.status == 1) {
+          if (a) {
+            this.$Message.info('封号成功')
+          }else {
+            this.$Message.info('解封成功')
+          }
+          this.show()
+        }
+      })
+    },
+
     search() {
       this.start_time = this.getTime(this.register_time[0], 0);
       this.end_time = this.getTime(this.register_time[1], 1);
@@ -316,6 +334,7 @@ export default {
           this.list = res.data.list.list.list;
           this.pageprops.total = res.data.list.list.total;
           this.if_show = true;
+          this.freeze = res.data.list.status;
         }
       })
     },
@@ -324,7 +343,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .user_tag {
     display: flex;
     justify-content: left;
@@ -354,7 +373,7 @@ export default {
         text-align: left;
         margin-bottom: 40px;
         text-indent: 2px;
-        font-size: 17px;
+        font-size: 16px;
         line-height: 200%;
         .goRight {
             float: right;

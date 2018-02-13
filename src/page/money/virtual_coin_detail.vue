@@ -136,15 +136,14 @@ export default {
     },
     search(data) {
       this.searchForm = data;
-      this.getData();
     },
     pageChange(page) {
       this.fy.page = page;
-      this.getData();
+      this.getData()
     },
     pageSizeChange(size) {
       this.fy.size = size;
-      this.getData();
+      this.getData()
     },
     getData() {
       this.tableLoading = true;
