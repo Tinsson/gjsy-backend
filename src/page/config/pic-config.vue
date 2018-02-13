@@ -12,7 +12,7 @@
       <Modal v-model="add_show" :closable="false" title="添加图片" ok-text="上传" @on-ok="upload" @on-cancel='handleRemove'>
         <Row type="flex" justify="center">
           <Col span="14" v-if="have_pic">
-            <img :src="uploadData" class="preview" width="260px"> <br>
+            <img :src="newData.img" class="preview" width="260px"> <br>
             <span>文案</span>
             <Input type="textarea" v-model="newData.word" :row="2"></Input>
           </Col>
@@ -134,14 +134,19 @@ export default {
               },
               on: {
                 click: () => {
-                  this.axios.get('pic-del', {
-                    params: {
-                      id: params.row.id
-                    }
-                  }).then((res) => {
-                    if (res.status === 1) {
-                      this.$Message.info('删除成功')
-                      this.getData()
+                  this.$Modal.confirm({
+                    content:'确认删除?',
+                    onOk:()=>{
+                      this.axios.get('pic-del', {
+                        params: {
+                          id: params.row.id
+                        }
+                      }).then((res) => {
+                        if (res.status === 1) {
+                          this.$Message.info('删除成功')
+                          this.getData()
+                        }
+                      })
                     }
                   })
                 }
@@ -157,7 +162,7 @@ export default {
                   this.newData.word = params.row.word
                   this.newData.class = params.row.class
                   this.newData.scenes = params.row.scenes
-                  this.uploadData = params.row.url
+                  this.newData.img = params.row.url
                   this.key = params.row.id
                   this.uploadType = 1
                 }
@@ -168,11 +173,10 @@ export default {
       }],
       myData: [],
       add_show: false,
-      uploadData: '',
       key: '',
       uploadType: 0,
       newData: {
-        file: {},
+        img: '',
         word: '',
         class: '',
         scenes: ''
@@ -181,10 +185,10 @@ export default {
   },
   computed: {
     have_pic() {
-      if (!this.uploadData) {
+      if (this.newData.img=='') {
         return false
       } else return true
-    }
+    },
   },
   components: {
     scalePic
@@ -197,35 +201,31 @@ export default {
 
     handleBeforeUpload(file) {
       let reader = new FileReader()
-      copyObj(file, this.newData.file)
       reader.readAsDataURL(file)
       reader.onloadend = (e) => {
-        this.uploadData = reader.result
+        this.newData.img = reader.result
       }
 
       return false;
     },
 
     handleRemove() {
-      this.uploadData = '',
-        this.newData = {
-          file:{},
-          word: '',
-          class: '',
-          scenes: ''
-        }
+      this.if_show = false
+      this.newData = {
+        img: '',
+        word: '',
+        class: '',
+        scenes: ''
+      }
     },
 
     upload() {
-      let formData = new FormData();
-      formData.append('class',this.newData.class)
-      formData.append('scenes',this.newData.scenes)
-      formData.append('word',this.newData.word)
-      formData.append('file',this.newData.file)
 
       if (this.uploadType === 1) {
-        formData.append('id',this.key)
-        this.axios.post('pic-edit', formData,config).then((res) => {
+
+        this.axios.post('pic-edit', {
+          id:this.key,
+          ...this.newData}).then((res) => {
           if (res.status == 1) {
             this.$Message.info('上传成功')
             this.getData()
@@ -234,7 +234,7 @@ export default {
         })
       } else {
 
-        this.axios.post('pic-add', {...this.newData}).then(
+        this.axios.post('pic-add', {...this.newData} ).then(
           (res) => {
             if (res.status == 1) {
               this.$Message.info('上传成功')

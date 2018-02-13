@@ -5,6 +5,7 @@ const urlList = {
 
   //用户管理
   'user-list': '/backend/user/list', //用户列表
+  'user-panel':'/backend/user/panel',//用户面板
 
   //红包管理
   'bonus-list': '/backend/bonus/list', //红包列表
