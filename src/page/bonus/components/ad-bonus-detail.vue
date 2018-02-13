@@ -1,6 +1,6 @@
 <template lang="html">
-<div class="ask-bonus-detail" v-if="if_show">
-  <Modal width="1000" v-model="if_show" title="讨红包详情">
+<div class="ad-bonus-detail" v-if="if_show">
+  <Modal width="1000" v-model="if_show" title="红包详情">
     <Card>
       <Card>
         <Row>
@@ -34,7 +34,7 @@
 
 <script>
 export default {
-  name: "askDetail",
+  name: "adBonusDetail",
   data: () => ({
     columns: [{
       title: '序号',

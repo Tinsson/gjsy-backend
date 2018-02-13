@@ -81,22 +81,7 @@
           }, {
             title: '红包状态',
             key: 'status',
-            align: 'center',
-            render: (h, params)=>{
-              let status = '';
-              switch(params.row.status){
-                case 1:
-                  status = '未领取完';
-                  break;
-                case 2:
-                  status = '已被领完';
-                  break;
-                case 3:
-                  status = '已过期';
-                  break;
-              }
-              return h('span', status);
-            }
+            align: 'center'
           },{
             title: '服务费',
             key: 'service_money',

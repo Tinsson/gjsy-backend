@@ -45,6 +45,10 @@ export default {
         id:'11',
         name:'讨红包管理',
         path:'/ask-bonus'
+      },{
+        id:'24',
+        name:'广告红包管理',
+        path:'/ad-bonus'
       }]
     },{
       id: '5',
@@ -58,6 +62,10 @@ export default {
         id:'12',
         name:'提现列表',
         path:'/cash-list'
+      },{
+        id:'16',
+        name:'大额提现申请',
+        path:'/greatCash'
       },{
         id:'13',
         name:'微信充值记录',
@@ -79,6 +87,38 @@ export default {
         id: '8',
         name: '分销列表',
         path: '/distribute'
+      }]
+    },{
+      id:'17',
+      name:'对账',
+      path:'/check',
+      children:[
+      //   {
+      //   id:'18',
+      //   name:'红包对账',
+      //   path:'/money-check'
+      // },
+      {
+        id:'19',
+        name:'收支对账',
+        path:'/income-check'
+      }]
+    },{
+      id:'20',
+      name:'管理配置',
+      path:'/config',
+      children:[{
+        id:'21',
+        name:'图片配置',
+        path:'/pic-config'
+      },{
+        id:'22',
+        name:'金币配置',
+        path:'/coin-config'
+      },{
+        id:'23',
+        name:'大转盘配置',
+        path:'/dial-config'
       }]
     },{
       id: '9',
