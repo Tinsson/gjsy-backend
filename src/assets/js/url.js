@@ -63,13 +63,12 @@ const urlList = {
   'task-list': '/task/list', //获取任务列表
   'task-add': '/task/add', //添加任务
   'task-edit': '/task/edit', //修改任务
-<<<<<<< HEAD
 
   //红包大厅
   'power-all': '/backend/power/all', //后台体力配置列表
   'power-add': '/backend/power/add', //添加体力配置
   'power-edit': '/backend/power/edit', //编辑体力配置
-=======
+
   'del-virtual':'/backend/game/del-virtual', //金币配置删除
   'add-virtual':'/backend/game/add-virtual',//金币配置添加
   'edit-virtual':'/backend/game/edit-virtual',//金币配置编辑
@@ -84,7 +83,6 @@ const urlList = {
   'pic-edit':'/backend/abonus/edit',//图片管理编辑
   'pic-del':'/backend/abonus/del',//图片管理删除
 
->>>>>>> baominghui
 }
 
 export default urlList;
