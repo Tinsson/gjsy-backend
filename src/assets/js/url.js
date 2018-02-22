@@ -15,6 +15,7 @@ const urlList = {
   'asksearch':'/backend/abonus/search-detail', //讨红包明细
   'adv-search':'/backend/bonus/adv-search',//广告红包列表
   'adv-detail':'/backend/bonus/adv-detail',//广告红包详情
+  'ad-del':'/backend/bonus/del-remark',//广告红包删除
 
   //资金管理
   'bill-list': '/backend/bill/list', //资金列表

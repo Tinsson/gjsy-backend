@@ -53,7 +53,6 @@ export default {
       }],
       if_show:false,
       myData:[],
-      originalData:{},
       id:''
     }
   },
@@ -62,13 +61,16 @@ export default {
   },
   methods:{
     show(row) {
+      this.id = row.id
       this.axios.get('adv-detail', {
         params: row
       }).then(res => {
-        if (res) {
-          this.if_show = true
+        if (res.data.list.text) {
           this.myData = JSON.parse(res.data.list.text)
-          this.id = row.id
+          this.if_show = true
+        }else {
+          this.myData = []
+          this.if_show = true
         }
       })
     },
