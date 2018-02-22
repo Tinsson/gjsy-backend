@@ -39,7 +39,7 @@ export default {
           align: 'center'
         },{
           title: '提现通过时间',
-          key: 'finish_at',
+          key: 'updated_at',
           align:'center'
         },{
           title:'提现状态',
@@ -58,7 +58,7 @@ export default {
           label: '昵称',
           type: 'input',
           placeholder: '用户昵称',
-          model: 'keyword'
+          model: 'name'
         },{
           label: '申请时间',
           type: 'daterange',
@@ -76,15 +76,11 @@ export default {
         size: 10
       },
       searchForm: {}, //搜索框属性
-      cardsearch: {
-        status: 1,
-        difference:1
-      }
     }
   },
   computed: {
     searchData () {
-      return Object.assign(this.fy,this.searchForm,this.cardsearch);
+      return Object.assign(this.fy,this.searchForm);
     }
   },
   watch:{
@@ -111,7 +107,7 @@ export default {
     getData() {
       // console.log(this.searchData);
       this.tableLoading = true;
-      this.axios.get('backend-order-recharge', {
+      this.axios.get('withdraw', {
         params: this.searchData
       }).then(res => {
         // console.log(res);
