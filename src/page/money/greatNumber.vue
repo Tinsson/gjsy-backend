@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="greatCash">
-    <title-bar title="提现列表" @refresh="refresh"></title-bar>
+    <title-bar title="大额提现申请" @refresh="refresh"></title-bar>
     <search-group :searchList="searchList" @search="search"></search-group>
     <table-container @on-change="pageChange" @on-page-size-change="pageSizeChange" page :pageprops="pageprops">
       <Table :columns="columns" :data="myData" border :loading="tableLoading"></Table>

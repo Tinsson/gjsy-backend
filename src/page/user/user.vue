@@ -149,6 +149,11 @@ export default {
       return Object.assign(this.fy,this.searchForm,this.my_search);
     }
   },
+  watch:{
+    searchData:function () {
+      this.getData()
+    }
+  },
   methods: {
     select(selection) {
       this.select_arr = selection

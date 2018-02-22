@@ -18,8 +18,8 @@
         </Row>
         <Row>
           <div class="userContent">
-            <span v-if="userData.remark_type==0">{{userData.remark_word}}</span>
-            <Button v-else type="success" @click="voiceOn(userData.remark_voice)">播放录音</Button>
+            <Button v-if="userData.remark_type==2" type="success" @click="voiceOn(userData.remark_voice)">播放录音</Button>
+            <span v-if="userData.remark_type==1">{{userData.remark_word}}</span>
           </div>
         </Row>
       </Card>
