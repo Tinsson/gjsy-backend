@@ -1,6 +1,6 @@
 <template>
   <div id="income-detail">
-    <title-bar title="收入明细" @refresh="refresh"></title-bar>
+    <title-bar title="资金明细" @refresh="refresh"></title-bar>
     <search-group :searchList="searchList" @search="search"></search-group>
     <table-container @on-change="pageChange" @on-page-size-change="pageSizeChange" page :pageprops="pageprops">
       <Table :columns="columns" :data="myData" border :loading="tableLoading"></Table>
@@ -48,7 +48,7 @@ export default {
           label: '生成时间',
           type: 'daterange',
           placeholder: '请选择时间',
-          model: 'created_time',
+          model: 'register_time',
           start_end: ['start_time','end_time']
         }
       ],
@@ -62,13 +62,18 @@ export default {
       },
       searchForm: {}, //搜索框属性
       my_search: {
-        pay_type: 2
+
       }
     }
   },
   computed: {
     searchData () {
       return Object.assign(this.fy,this.searchForm,this.my_search);
+    }
+  },
+  watch:{
+    searchData:function () {
+      this.getData()
     }
   },
   methods: {

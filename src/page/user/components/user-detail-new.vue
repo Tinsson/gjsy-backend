@@ -227,7 +227,7 @@ export default {
     },
     searchForm: {}, //搜索框属性
     my_search: {
-      key: 'ocJN_4jN7hgUaIrIkVC-fDhUX_SU'
+      key: ''
     },
     register_time: [],
     start_time: '',
@@ -289,8 +289,7 @@ export default {
       this.start_time = this.getTime(this.register_time[0], 0);
       this.end_time = this.getTime(this.register_time[1], 1);
     },
-    clear(type) {
-      this.type = type;
+    clear() {
       this.fy.page = 1;
       this.fy.size = 10;
       this.start_time = '';
@@ -319,6 +318,8 @@ export default {
         }
       })
       this.type = type
+      this.clear()
+      this.register_time = []
     },
     show(row) {
       if (row) {

@@ -222,7 +222,9 @@ export default {
     upload() {
 
       if (this.uploadType === 1) {
-
+        if (this.newData.img[0]=='h') {
+          delete this.newData.img
+        }
         this.axios.post('pic-edit', {
           id:this.key,
           ...this.newData}).then((res) => {

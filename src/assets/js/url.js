@@ -48,7 +48,8 @@ const urlList = {
   'product-drop': '/product/drop', //获取礼物名称下拉列表
   'product-search': '/product/search', //获取礼物明细
   'bill-user-log-list': '/bill/user-log-list', //消费/收入明细
-  'backend-order-recharge': '/backend/order/recharge', //充值/提现
+  'backend-order-recharge': '/backend/order/recharge', //充值
+  'withdraw':'/backend/order/withdraw',//提现
   'recharge-list':'/backend/game/recharge-list',//虚拟币充值
   'coin-search':'/backend/game/search',//虚拟币明细
   'edit-review':'/backend/withdraw/edit-review',//大额提现审核
