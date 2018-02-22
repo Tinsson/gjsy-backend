@@ -25,11 +25,12 @@
 </template>
 <script>
 import {copyObj} from '@/utils/common.js'
-
 const audio = document.createElement('audio');
+
 export default {
   name: "userDetail",
-  data: () => ({
+  data(){
+    return {
     id: '',
     table_type: '',
 
@@ -82,13 +83,14 @@ export default {
       title: '操作',
       align: 'center',
       render: (h,params)=>{
+        //let that = this;
         return h('Button', {
           props: {
             type: 'success'
           },
           on: {
             click: () => {
-              this.a.methods.playVoice(params.row);
+              this.playVoice(params.row.receive_voice);
             }
           }
         }, '播放录音')
@@ -119,7 +121,7 @@ export default {
     edit_user_trends: false,
     user_trends_form:{},
     user_trends_form_copy:{}
-  }),
+  }},
   computed: {
     user_data_sign_html() {
       return this.user_data_form.introduce.replace(/\n/g,'<br>')
@@ -163,8 +165,8 @@ export default {
         }
       });
     },
-    playVoice: (row)=>{
-      audio.src = row.receive_voice;
+    playVoice: (voice)=>{
+      audio.src = voice;
       audio.play();
     }
   }

@@ -109,7 +109,7 @@ export default {
       this.getData();
     },
     getData() {
-      this.tableLoading = true
+      this.tableLoading = true;
       this.axios.get('bill-user-log-list',{
         params:this.searchData
       }).then(res=>{
