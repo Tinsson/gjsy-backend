@@ -12,136 +12,146 @@
 
 <script>
 import adDetail from './components/ad-detail.vue'
-import adBonusDetail from './components/ad-bonus-detail.vue'
+import adBonusDetail from './components/bonus-detail.vue'
 export default {
-  name:'adBonus',
-  data(){
+  name: 'adBonus',
+  data() {
     return {
-      columns:[{
-        title:'头像',
-        align:'center',
-        render:(h,params)=>{
-          return h('img',{
-            attrs:{
-              src:params.row.avatarulr
+      columns: [{
+        title: '头像',
+        align: 'center',
+        render: (h, params) => {
+          return h('img', {
+            attrs: {
+              src: params.row.avatarulr
             },
-            style:{
-              height:'45px',
-              width:'45px'
+            style: {
+              height: '45px',
+              width: '45px'
             }
           })
         }
-      },{
-        title:'昵称',
-        key:'name',
-        align:'center'
-      },{
-        title:'openid',
-        key:'uid',
-        align:'center'
-      },{
-        title:'广告口号',
-        key:'bonus_password',
-        align:'center'
-      },{
-        title:'生成时间',
-        key:'created_at',
-        align:'center'
-      },{
-        title:'红包金额',
-        key:'bonus_money',
-        align:'center'
-      },{
-        title:'已领/总数',
-        key:'receive_bonus_num',
-        align:'center'
-      },{
-        title:'领取金额',
-        key:'receive_money',
-        align:'center'
-      },{
-        title:'广告链接',
-        align:'center',
-        render:(h,params)=>{
-          return h('Button',{
-            props:{
-              type:'info',
-              size:'small'
+      }, {
+        title: '昵称',
+        key: 'name',
+        align: 'center'
+      }, {
+        title: 'openid',
+        key: 'uid',
+        align: 'center'
+      }, {
+        title: '广告口号',
+        key: 'bonus_password',
+        align: 'center'
+      }, {
+        title: '生成时间',
+        key: 'created_at',
+        align: 'center'
+      }, {
+        title: '红包金额',
+        key: 'bonus_money',
+        align: 'center'
+      }, {
+        title: '已领/总数',
+        key: 'receive_bonus_num',
+        align: 'center'
+      }, {
+        title: '领取金额',
+        key: 'receive_money',
+        align: 'center'
+      }, {
+        title: '广告链接',
+        align: 'center',
+        render: (h, params) => {
+          return h('Button', {
+            props: {
+              type: 'info',
+              size: 'small'
             },
-            on:{
-              click:()=>{
+            on: {
+              click: () => {
                 let a = {
-                  id:params.row.id
+                  id: params.row.id
                 }
                 this.$refs.adDetail.show(a)
               }
             }
-          },'详情')
+          }, '详情')
         }
-      },{
-        title:'红包状态',
-        key:'status',
-        align:'center'
-      },{
-        title:'服务费',
-        key:'service_money',
-        align:'center'
-      },{
-        title:'退款金额',
-        key:'refund_money',
-        align:'center'
-      },{
-        title:'操作',
-        align:'center',
-        width:'125',
-        render:(h,params)=>{
-           return h('div',[
-             h('Button',{
-               props:{
-                 type:'error',
-                 size:'small'
-               },
-               style:{
-                 marginRight:"5px"
-               },
-               on:{
-                 click:()=>{
-
-                 }
-               }
-             },'删除'),
-             h('Button',{
-               props:{
-                 type:'info',
-                 size:'small'
-               },
-               on:{
-                 click:()=>{
-                   this.$refs.adBonusDetail.show()
-                 }
-               }
-             },'查看')
-           ])
+      }, {
+        title: '红包状态',
+        key: 'status',
+        align: 'center'
+      }, {
+        title: '服务费',
+        key: 'service_money',
+        align: 'center'
+      }, {
+        title: '退款金额',
+        key: 'refund_money',
+        align: 'center'
+      }, {
+        title: '操作',
+        align: 'center',
+        width: '150',
+        render: (h, params) => {
+          return h('div', [
+            h('Button', {
+              props: {
+                type: 'error',
+                size: 'small'
+              },
+              style: {
+                marginRight: "5px"
+              },
+              on: {
+                click: () => {
+                  this.axios.get('ad-del', {
+                    params: {
+                      bonus_id: params.row.id
+                    }
+                  }).then((res)=>{
+                    if (res.status == 1) {
+                      this.$Message.info('删除成功')
+                      this.getData()
+                    }
+                  }
+                  )
+                }
+              }
+            }, '删除详情'),
+            h('Button', {
+              props: {
+                type: 'info',
+                size: 'small'
+              },
+              on: {
+                click: () => {
+                  this.$refs.adBonusDetail.show(params.row)
+                }
+              }
+            }, '查看')
+          ])
         }
       }],
-      searchList:[{
-        label:'昵称',
-        type:'input',
-        placeholder:'请输入昵称',
-        model:'name'
-      },{
-        label:'openid',
-        type:'input',
-        placeholder:'请输入openid',
-        model:'openid'
-      },{
-        label:'时间',
-        type:'daterange',
-        placeholder:'请选择时间',
+      searchList: [{
+        label: '昵称',
+        type: 'input',
+        placeholder: '请输入昵称',
+        model: 'name'
+      }, {
+        label: 'openid',
+        type: 'input',
+        placeholder: '请输入openid',
+        model: 'openid'
+      }, {
+        label: '时间',
+        type: 'daterange',
+        placeholder: '请选择时间',
         model: 'created_time',
         start_end: ['start_time', 'end_time']
       }],
-      tableLoading:false,
+      tableLoading: false,
       myData: [],
       fy: { //当前分页属性
         page: 1,
@@ -160,16 +170,16 @@ export default {
       return Object.assign(this.fy, this.searchForm, this.my_search);
     }
   },
-  watch:{
-    searchData:function () {
+  watch: {
+    searchData: function() {
       this.getData()
     }
   },
-  components:{
+  components: {
     adDetail,
     adBonusDetail
   },
-  methods:{
+  methods: {
     refresh() {
       this.getData();
     },
@@ -198,7 +208,7 @@ export default {
       })
     },
   },
-  mounted(){
+  mounted() {
     this.getData();
   }
 }
